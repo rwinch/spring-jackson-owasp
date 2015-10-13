@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>OWASP JSON</title>
+	<script src="./js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+	<h1>OWASP JSON</h1>
+	<p>
+		This demonstrates how to configure a Spring Java Config application to encode JSON rather than simply escaping it as recommended by OWASP XSS <a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#Output_Encoding_Rules_Summary">cheat sheet</a>.
+		Specifically it states JavaScript should be encoded as "Except for alphanumeric characters, escape all characters with the \uXXXX unicode escaping format (X = Integer)."
+	</p>
+
+	<p>
+		Try getting the JSON with the GET JSON link below:
+	</p>
+
+	<p>
+		<a id="json-test" href="#">Get JSON</a>
+	</p>
+
+	<div id="output">
+
+	</div>
+
+	<p>You can also get the content with CURL to see the UTF encoding</p>
+
+	<pre>
+$ curl 'localhost:8080/message?p="Hello"'
+{"message":"\u0022Hello\u0022"}
+	</pre>
+
+	<p>
+
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$('#json-test').click(function() {
+				$.getJSON('./message?p="Hello"',function(data) {
+					$("#output").text(data.message);
+				});
+			});
+		});
+	</script>
+</body>
+</html>

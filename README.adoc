@@ -1,0 +1,12 @@
+= OWASP JSON
+
+This demonstrates how to configure Spring applications to encode JSON rather than simply escaping it as recommended by OWASP XSS https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#Output_Encoding_Rules_Summary[cheat sheet].
+Specifically it states JavaScript should be encoded as
+
+[quote]
+Except for alphanumeric characters, escape all characters with the \uXXXX unicode escaping format (X = Integer).
+
+
+* link:spring-jackson-owasp-boot[spring-jackson-owasp-boot] - A Spring Boot application that escaping all non-alphanumeric characters with unicode with Jackson
+* link:spring-jackson-owasp-java[spring-jackson-owasp-java] - A Spring Java configuration application that escaping all non-alphanumeric characters with unicode with Jackson
+* link:spring-jackson-owasp-xml[spring-jackson-owasp-xml] - A Spring XML configuration application that escaping all non-alphanumeric characters with unicode with Jackson

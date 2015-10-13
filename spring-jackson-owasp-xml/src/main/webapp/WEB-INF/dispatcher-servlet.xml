@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<mvc:default-servlet-handler/>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<constructor-arg>
+					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+						<constructor-arg>
+							<bean class="com.fasterxml.jackson.core.JsonFactory">
+								<property name="characterEscapes">
+									<bean class="sample.OwaspCharacterEscapes"/>
+								</property>
+							</bean>
+						</constructor-arg>
+					</bean>
+				</constructor-arg>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<context:component-scan base-package="sample" />
+
+</beans>

@@ -1,0 +1,19 @@
+= OWASP JSON
+
+This demonstrates how to configure a Spring Boot application to encode JSON rather than simply escaping it as recommended by OWASP XSS https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#Output_Encoding_Rules_Summary[cheat sheet].
+Specifically it states JavaScript should be encoded as
+
+[quote]
+Except for alphanumeric characters, escape all characters with the \uXXXX unicode escaping format (X = Integer).
+
+
+== Running
+
+You can run the application with the following:
+
+[source,bash]
+----
+./mvnw spring-boot:run
+----
+
+Then access http://localhost:8080/
